@@ -1,0 +1,135 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<center>
+<div style="display: flex; padding-right: 75px">
+	<div class="col left" style="flex 40%;">
+	<center>
+	<form action="/submit" id="textform" method="post">
+	    <textarea name="content" rows="8" cols="50" placeholder="Content" style="border-radius: 10px"></textarea>
+	    <br>
+	    <input type="text" name="author" placeholder="Name">
+	    <input type="submit" value="Post">
+	</form>
+	</center>
+
+	<br>
+
+	<center>
+	<a href="{{node_address}}/mine" target="_blank"><button>Mine</button></a>
+	<a href="/" style="background-color: #253e60"><button>Update</button></a>
+	</center>
+	</div>
+
+	<div class="col right" style="flex: 60%; align: left;">
+
+    {% for post in posts %}
+    <div class="post_box" style="background-color: #253e60">
+	   <div class="post_box-header">
+<!--	      <div class="post_box-options"><button class="option-btn">Reply</button></div>-->
+	      <div style="background: #d9d9d9 none repeat scroll 0% 0%; box-shadow: #d9d9d9 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0]}}</div>
+	      <div class="name-header" style="font-family: 'Calibri'; text-align: left;">{{post.author}}</div>
+	      <div class="post_box-subtitle"> Posted at <i>{{readable_time(post.timestamp)}}</i></div>
+	   </div>
+	   <div>
+	      <div class="post_box-body">
+	         <p style="color: white">{{post.content}}</p>
+	      </div>
+	   </div>
+	</div>
+	{% endfor %}
+
+	<style>
+		.post_box {
+			opacity: 0.95;
+			content-align: left;
+		    padding: 12px 0px 12px 12px;
+		    margin-top: 0px;
+		    margin-bottom: 8px;
+		    border-radius: 15px;
+
+		}
+
+		.post_box-header {
+			color: white;
+		    padding-bottom: 12px;
+		}
+
+		.post_box-avatar {
+			font-family: "Quicksand";
+			font-weight: bold;
+		    width: 38px;
+		    height: 38px;
+		    border-radius: 50%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    color: #253e60;
+		    font-size: 22px;
+		    float: left;
+		    margin-right: 16px;
+		    border: 1px solid #253e60;
+		    box-shadow: 0px 0px 0px 2px #f00;
+		}
+
+		.post_box-avatar::after {
+		    content:"";
+		    display:block;
+		}
+
+		.post_box-name {
+			font-family: "Quicksand";
+		    font-weight: bold;
+		    float: left;
+		}
+
+		.post_box-subtitle {
+			font-family: "Calibri";
+		    color: #d9d9d9;
+		    float:left;
+		}
+
+		.post_box-body {
+			font-family: "Calibri";
+			padding: 5px 0px 0px 5px;
+		    margin-top: 16px;
+		    margin-bottom: 8px;
+		    text-align: left;
+		}
+
+		.post_box-options {
+		    float: right;
+		}
+		.option-btn {
+		    background: #f8f8f8;
+		    border: none;
+		    color: #2c3e50;
+		    padding: 7px;
+		    cursor: pointer;
+		    font-size: 14px;
+		    margin-left: 2px;
+		    margin-right: 2px;
+		    outline: none;
+		    height: 42px;
+		}
+	</style>
+	</div>
+	<style>
+		.col {
+		float: left;
+  		width: 50%;
+  		padding: 10px;
+  		}
+
+  		@font-face {
+        font-family: "Quicksand";
+        src: url(/fonts/Quicksand.ttf);
+      	}
+	</style>
+</div>
+</center>
+
+{% endblock %}

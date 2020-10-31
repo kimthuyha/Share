@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+  <title>{{ title }}</title>
+  <style>
+      body {
+        background-image: url({{ path }});
+      }
+
+
+      .header {
+        height:50px;
+
+
+      }
+      a.about:link, a.about:visited {
+
+        font-family: "Calibri";
+        font-weight: bold;
+        color: #253e60;
+        padding: 1em 85px;
+        text-decoration: none;
+        font-size: 10px
+        text-transform: uppercase;
+        float: right
+      }
+
+      a.about:hover, a.about:active, a.main:hover, a.main:active {
+        text-decoration: underline;
+      }
+
+      a.main:link, a.main:visited {
+
+        font-family: "Calibri";
+        font-weight: bold;
+        color: #253e60;
+        padding: 1em ;
+        text-decoration: none;
+        font-size: 10px
+        text-transform: uppercase;
+        float: right
+      }
+
+      a.main:hover, a.main:active {
+        text-decoration: underline;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url(/fonts/Quicksand.ttf);
+      }
+
+      .title {
+        font-family: "Quicksand";
+        font-weight: bold;
+        font-size: 25px;
+
+        color: #253e60;
+        opacity: 1;
+        padding-top: 0.3em;
+        padding-left: 85px;
+        text-decoration: none;
+        text-transform: uppercase;
+        float: left
+      }
+
+
+  </style>
+</head>
+<body>
+<div class="header">
+  <a class="about" target="_self" href="/about">ABOUT</a>
+  <a class="main" target="_self" href="/">MAIN</a>
+  <a class="title" target="_self" href="/">P R O J E C T</a>
+</div>
+<hr>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</DOCTYPEhtml>
